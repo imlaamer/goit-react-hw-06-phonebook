@@ -9,15 +9,12 @@ const contactsSlice = createSlice({
   initialState: initialContacts,
   reducers: {
     saveContact(state, action) {
-      state.contacts.push(action.payload);
-      // return [...state.contacts, action.payload];
+      state.contacts = [...state.contacts, action.payload];
     },
     deleteContact(state, action) {
-      // return state.contacts.filter(contact => contact.id !== action.payload);
-      const index = state.contacts.findIndex(
-        contact => contact.id === action.payload
+      state.contacts = state.contacts.filter(
+        contact => contact.id !== action.payload
       );
-      state.contacts.splice(index, 1);
     },
   },
 });

@@ -1,7 +1,17 @@
+import { useDispatch } from 'react-redux';
+import { filterContacts } from '../../redux';
 import css from './Filter.module.css';
 
-function Filter({ filterValue, filterChange }) {
+export function Filter() {
+  const dispatch = useDispatch();
+
+  const handleFilterChange = event => {
+    const value = event.currentTarget.value;
+    dispatch(filterContacts(value));
+  };
+
   const { filterBox, filterText, filterInput } = css;
+
   return (
     <div className={filterBox}>
       <p className={filterText}>{'Find contacts by name 🔎'}</p>
@@ -10,11 +20,8 @@ function Filter({ filterValue, filterChange }) {
         name="filter"
         placeholder="Name..."
         className={filterInput}
-        value={filterValue}
-        onChange={filterChange}
+        onChange={handleFilterChange}
       />
     </div>
   );
 }
-
-export default Filter;
